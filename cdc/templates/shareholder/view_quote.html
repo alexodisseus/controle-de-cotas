@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <h2>Lista de Títulos:</h2>
+     <h5>{{data[1].name}}</h5>
+    <div class="card table-responsive-md">
+        <div class="container mt-3">
+          
+          <div class="alert alert-info mt-3">
+            <strong>Total de Títulos:</strong> [{{data[2]}}]
+          </div>
+          
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Código</th>
+                <th>Data</th>
+                <th>Quantidade</th>
+                <th>Status</th>
+                <th>Antigo</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% if data[0]:%}
+              {%for x in data[0]  :%}
+                <tr>
+                <td>{{x.code}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.grouping}}</td>
+                <td>{{x.status}}</td>
+                <td>{{x.old}}</td>
+              </tr>
+              {%endfor%}
+            {%else:%}
+                <tr>
+                <td></td>
+                <td></td>
+                <td>nao existem dados</td>
+                <td></td>
+                <td></td>
+              </tr>
+                
+            {%endif%}
+              
+            </tbody>
+          </table>
+          </div>
+          </div>
+          
+        
+    
+    
+        
+       
+       
+    </div>
+
+
+    
+</div>
+
+
+{% endblock %}
+

@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+{{pending}}
+<div class="container mt-5">
+    <h2>Relatório de pagamento</h2>
+     <h5>Últimos meses</h5>
+    <div class="card table-responsive-md">
+        <div class="card-header">
+      Pendentes
+    </div>
+        <div class="container">
+          
+         
+          <table class="table">
+            <thead>
+              <tr>
+                
+                <th>Data</th>
+                <th>Quantidade</th>
+                <th>Status</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% if pending!=[]:%}
+                {%for x in pending:%}
+              <tr>
+                <td>
+                  <a href="{{url_for('report.view' , id=x.id )}}">
+                    
+                  {{x.date}}
+                  </a>
+                </td>
+                <td> - </td>
+                <td>{{x.status}}</td>
+                <td> - </td>
+              </tr>
+                {%endfor%}    
+            {%endif%}
+            {% if data[0]:%}
+                {%for x in data[0]:%}
+                <tr>
+                <td>{{x.code}}</td>
+                <td>{{x.date}}</td>
+                <td>{{x.grouping}}</td>
+                <td>{{x.status}}</td>
+                <td>{{x.old}}</td>
+              </tr>
+                {%endfor%}    
+            {%endif%}
+              
+            </tbody>
+          </table>
+          </div>
+          </div>
+          
+        
+    
+    
+        
+       
+       
+    </div>
+
+
+    
+</div>
+
+
+{% endblock %}
+

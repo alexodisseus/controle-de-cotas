@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+
+<div class="container mt-5">
+    <div class="card mx-auto" style="width: 50%;">
+        <div class="card-body">
+            <h2 class="card-title">Fechamento</h2>
+            <form action="{{url_for('closure.create')}}" method="POST">
+                <div class="form-group">
+                    <label for="data">Data:</label>
+                    <input type="date" class="form-control" id="data" name="data" required>
+                </div>
+                <div class="form-group">
+                    <label for="valorTitulo">Valor do Título:</label>
+                    <input type="text" class="form-control" id="valorTitulo" name="valorTitulo" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Enviar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

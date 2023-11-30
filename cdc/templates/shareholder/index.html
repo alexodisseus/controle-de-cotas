@@ -1,0 +1,132 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <h1>Cotistas</h1>
+    <div class="card table-responsive-md">
+        <div class="container mt-4">
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <form action="./" method="GET">
+                        
+                        <div class="input-group">
+                            <input type="text" name="search" id="search" class="form-control" placeholder="Buscar Nome, CPF, Matrícula, etc">
+                            <div class="input-group-append">
+                                <button class="btn btn-primary" type="submit">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <br>
+        
+        <table class="table  ">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF/CNPJ</th>
+                    <th>Email</th>
+                    <th>Data de Nascimento</th>
+                    <th>Telefone</th>
+                    <th>Celular</th>
+                </tr>
+            </thead>
+            <tbody>
+                
+
+            {%if data:%}
+                {%for x in data:%}
+                <tr>
+                    <td>
+                        <a href="{{url_for('shareholder.view', id = x.id ) }}">
+                            
+                            <strong>{{x.name}}</strong> 
+                        </a>
+                    </td>
+                    <td>
+                        {%if x.cpf|length <11:%}
+                         000.000.000-00
+                        {%endif%}
+                        {%if x.cpf|length ==11:%}
+                        {{ x.cpf[:3]}}.{{ x.cpf[3:6] }}.{{ x.cpf[6:9] }}-{{ x.cpf[9:] }}
+                        {%endif%}
+                        {%if x.cpf|length >11:%}
+                        {{x.cpf[:2]}}.{{x.cpf[2:5]}}.{{x.cpf[5:8]}}/{{x.cpf[8:12]}}-{{x.cpf[12:]}}
+                        {%endif%}
+
+                    </td>
+                    <td>{{x.email}}</td>
+                    <td>{{x.birth}}</td>
+                    <td>{{x.telephone}}</td>
+                    <td>{{x.cell}}</td>
+                </tr>
+                    {%endfor%}
+                {%else:%}
+                <tr>
+                    <td>
+                            
+                            <strong></strong> 
+                        
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td>Não existem resultados</td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                {%endif %}
+
+            
+            </tbody>
+        </table>
+        
+        {% if pagination[4] > 1: %}
+        <ul class="pagination justify-content-center">
+            {% if pagination[1] > 1: %}
+            <li class="page-item ">
+                <a class="page-link" href="{{url_for('shareholder.index' , page=1 , search=pagination[0]) }}">primeira</a>
+            </li>
+            <li class="page-item ">
+
+                <a class="page-link" href="{{url_for('shareholder.index' , page = pagination[1] - 1 , search=pagination[0]) }}">anterior</a>
+            </li>
+            {% endif %}
+
+
+            <li class="page-item active">
+                <span class="page-link">{{ pagination[1] }}</span>
+            </li>
+            
+            {% if pagination[4] > pagination[1]:%}
+            <li class="page-item">
+                
+                <a class="page-link" href="{{url_for('shareholder.index' , page = pagination[1] + 1 , search=pagination[0]) }}">próxima</a>
+            </li>
+            <li class="page-item">
+
+                <a class="page-link" href="{{url_for('shareholder.index' , page = pagination[4] , search=pagination[0]) }}">última</a>
+                
+            </li>
+            {% endif %}
+        </ul>
+        {% endif %}
+
+       
+    </div>
+
+
+    </div>
+</div>
+
+
+
+{% endblock %}
+
+

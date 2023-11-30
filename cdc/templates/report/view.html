@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+{{data}}
+
+<div class="container mt-3">
+  <h2>Relatório Bancário</h2>
+
+ 
+    
+    
+    
+    
+    <div class="card col-md-12">
+        mes de tal resumo - arrumar
+        <button>
+          imprimir
+        </button>
+        <button>
+            <a href="{{url_for('report.edit',id=id)}}">
+            editar
+            </a>
+        </button>
+    </div>
+    
+    <div class="col-md-6">
+        
+        
+
+  <div class="card mt-3">
+    <div class="card-header">
+      Bradesco geral - 2023-11-28
+    </div>
+    <ul class="list-group list-group-flush">
+      
+      <li class="list-group-item"> 
+      Quantidade: 5 
+      </li>
+      <li class="list-group-item"> 
+       Valor Total: R$ 50 
+      <li class="list-group-item">
+      Pendente: 003
+      </li>
+      <!-- Adicione mais itens conforme necessário -->
+    </ul>
+    <div class="card-footer">
+      <strong>Total: R$ 50</strong>
+    </div>
+  </div>
+    </div>
+  <!-- Adicione mais blocos de código para outros bancos, se necessário -->
+
+</div>
+
+
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block styles %}
+    <!-- Bootstrap CSS -->
+    {{ bootstrap.load_css() }}
+    <link rel="stylesheet"
+                  href="{{url_for('static', filename='index.css')}}">
+{% endblock %}
+{% block content %}
+
+<div class="container mt-3">
+  <h2>Relatório Bancário</h2>
+
+  <div class="card mt-3 ">
+    <div class="card-header">
+      Bradesco detalhes
+      <button>add ações para tabela</button>
+      <button>add ações para tabela</button>
+    </div>
+
+      <div class="table-responsive">
+    
+        <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Ação</th>
+          <th scope="col">Código</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Data</th>
+          <th scope="col">Quantidade</th>
+          <th scope="col">Valor bruto</th>
+          <th scope="col">Valor liquido</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><input type="checkbox"></td>
+          <td>001</td>
+          <td>Cliente 1</td>
+          <td>2023-11-28</td>
+          <td>10</td>
+          <td>R$ 100</td>
+          <td>R$ 92</td>
+          <td>Pendente</td>
+        </tr>
+        <!-- Adicione mais linhas conforme necessário -->
+      </tbody>
+    </table>
+  </div>
+
+    <div class="card-footer">
+      <strong>Total: R$ 180</strong>
+    </div>
+  </div>
+
+  <div class="card mt-3 col-md-4">
+    <div class="card-header">
+      Bradesco geral - 2023-11-28
+    </div>
+    <ul class="list-group list-group-flush">
+      
+      <li class="list-group-item"> 
+      Quantidade: 5 
+      </li>
+      <li class="list-group-item"> 
+       Valor Total: R$ 50 
+      <li class="list-group-item">
+      Pendente: 003
+      </li>
+      <!-- Adicione mais itens conforme necessário -->
+    </ul>
+    <div class="card-footer">
+      <strong>Total: R$ 50</strong>
+    </div>
+  </div>
+
+  <!-- Adicione mais blocos de código para outros bancos, se necessário -->
+
+</div>
+
+
+
+{% endblock %}
