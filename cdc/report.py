@@ -69,9 +69,9 @@ def view(id):
 	if 'username' not in session:
 		return redirect(url_for('admin.login'))
 	"""
-
+	"""
 	asd = model.create_report_pay_check(id)
-
+	print(asd)
 	if asd:
 		relatorio = model.create_report_pay_auto(id)
 		pendentes =  model.list_closure_pending(id)
@@ -79,7 +79,11 @@ def view(id):
 
 		model.save_report(relatorio , pendentes)
 
-	
+	"""
+	#esse é o ponto de ruptura
+	#encontrar uma nova forma para o calculo
+	#o antigo demora para calcular o pagamento
+
 	data = model.list_report_id(id)
 
 
