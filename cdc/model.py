@@ -395,6 +395,9 @@ def create_report_pay_auto(id):
 
 		return data
 
+
+
+
 def save_report(data, fechamento):
 	with Session(engine) as session:
 		"""
@@ -417,7 +420,9 @@ def save_report(data, fechamento):
 		    
 		    
 		    session.add(a)
-		    session.commit()
+		
+		session.commit()
+		print("terminado")
 		    
 		
 

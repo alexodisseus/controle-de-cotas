@@ -1,14 +1,9 @@
-#from fastapi import FastAPI, HTTPException
-from sqlalchemy import create_engine
-from sqlalchemy.orm import Session
-from sqlmodel import SQLModel, Session, create_engine
-
-
-import app
 import model
 import math
 
 from flask import Blueprint, render_template, current_app , request , session, redirect, url_for
+
+
 
 
 report = Blueprint('report' , __name__ , url_prefix='/relatorios')
@@ -70,7 +65,7 @@ def edit(id):
 
 
 @report.route('/view/<id>', methods = ['GET','POST'])
-async def view(id):
+def view(id):
 	"""
 	if 'username' not in session:
 		return redirect(url_for('admin.login'))
@@ -91,9 +86,4 @@ async def view(id):
 
 	return render_template('report/view.html' , data = data  , id=id)
 	
-
-
-
-def configure(app):
-	app.register_blueprint(report)
 
