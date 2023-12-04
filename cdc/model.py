@@ -92,6 +92,7 @@ class Closure(SQLModel, table=True):
 	value:str
 	date:str
 	status:str
+	type:str
 
 class ReportPayment(SQLModel, table=True):
 	"""docstring for repor payment"""
@@ -307,9 +308,18 @@ def list_report(filters:str, offset:str, per_page:str ):
 		return data
 def list_report_id(id):
 	with Session(engine) as session:
-		query= select(ReportPayment).where(ReportPayment.closure_id == id)
-		data = session.exec(query).all()
+		
+		query= select(
+			Account.bank,
+			func.sum(ReportPayment.value),
+			func.sum(ReportPayment.amount),
+			Closure
+			).join(User, ReportPayment.user_id == User.id).join(
+			Account, User.id == Account.user_id).join(
+			Closure, Closure.id == ReportPayment.closure_id).group_by(Account.bank)
 
+		data = session.exec(query).all()
+		return data
 	
 
 def count_report(filters:str, offset:str, per_page:str ):
