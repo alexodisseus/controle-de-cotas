@@ -11,226 +11,67 @@
 
 <div class="container mt-3">
   <h2>Relatório Bancário</h2>
-
- 
-    
-    
-    
-    
-    <div class="card col-md-12">
+    <div class="card mt-3">
+      <div class="card-header d-flex justify-content-between align-items-center">
         mes de tal resumo - arrumar
-        <button>
-          imprimir
-        </button>
-        <button>
+          <div class="btn-group" role="group" aria-label="Ações">
+            <button type="button" class="btn btn-secondary">Imprimir</button>
             <a href="{{url_for('report.edit',id=id)}}">
-            editar
+            <button type="button" class="btn btn-primary">Editar</button>
             </a>
-        </button>
+          </div>
+        </div>
+
     </div>
+
     
-    <div class="col-md-6">
-        
-        
-
-  <div class="card mt-3">
-    <div class="card-header">
-      Bradesco geral - 2023-11-28
-    </div>
-    <ul class="list-group list-group-flush">
-      
-      <li class="list-group-item"> 
-      Quantidade: 5 
-      </li>
-      <li class="list-group-item"> 
-       Valor Total: R$ 50 
-      <li class="list-group-item">
-      Pendente: 003
-      </li>
-      <!-- Adicione mais itens conforme necessário -->
-    </ul>
-    <div class="card-footer">
-      <strong>Total: R$ 50</strong>
-    </div>
-  </div>
-    </div>
-  <!-- Adicione mais blocos de código para outros bancos, se necessário -->
-
-</div>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <title>Relatório de Pagamento Bancário</title>
-</head>
-<body>
-
-<!-- Painel Superior -->
-<div class="container-fluid bg-light p-3">
+<div class="container mt-4">
   <div class="row">
     <div class="col-md-6">
-      <h2>Relatório de Pagamento Bancário</h2>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Bradesco
+          <div class="btn-group" role="group" aria-label="Ações">
+            <button type="button" class="btn btn-secondary">Imprimir</button>
+            <button type="button" class="btn btn-primary">Editar</button>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Quantidade de Pagos: 10</li>
+          <li class="list-group-item">Quantidade Pendente: 5</li>
+          <li class="list-group-item">Total Pago: R$ 5.000,00</li>
+          <li class="list-group-item">Total Pendente: R$ 2.500,00</li>
+          <li class="list-group-item">Quantidade de Títulos: 15</li>
+        </ul>
+        <div class="card-footer">
+          <strong>Total: R$ 50</strong>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 text-right">
-      <button class="btn btn-primary" onclick="imprimirRelatorio()">Imprimir</button>
-      <button class="btn btn-success" onclick="editarRelatorio()">Editar</button>
-    </div>
-  </div>
-</div>
-
-<!-- Tabela Banco 1 -->
-<div class="container mt-4">
-  <h3>Banco 1</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Valor</th>
-        <!-- Adicione mais colunas conforme necessário -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cliente 1</td>
-        <td>R$ 100,00</td>
-        <!-- Adicione mais linhas conforme necessário -->
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Tabela Banco 2 -->
-<div class="container mt-4">
-  <h3>Banco 2</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Valor</th>
-        <!-- Adicione mais colunas conforme necessário -->
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cliente 2</td>
-        <td>R$ 150,00</td>
-        <!-- Adicione mais linhas conforme necessário -->
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Adicione mais tabelas para outros bancos conforme necessário -->
-
-<!-- Scripts JavaScript -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-  function imprimirRelatorio() {
-    // Adicione lógica de impressão aqui
-    alert('Relatório impresso!');
-  }
-
-  function editarRelatorio() {
-    // Adicione lógica de edição aqui
-    alert('Relatório em modo de edição!');
-  }
-</script>
-
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <title>Relatório de Pagamento Bancário</title>
-</head>
-<body>
-
-<!-- Painel Superior -->
-<div class="container-fluid bg-light p-3">
-  <div class="row">
     <div class="col-md-6">
-      <h2>Relatório de Pagamento Bancário</h2>
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center">
+          Bradesco
+          <div class="btn-group" role="group" aria-label="Ações">
+            <button type="button" class="btn btn-secondary">Imprimir</button>
+            <button type="button" class="btn btn-primary">Editar</button>
+          </div>
+        </div>
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">Quantidade de Pagos: 10</li>
+          <li class="list-group-item">Quantidade Pendente: 5</li>
+          <li class="list-group-item">Total Pago: R$ 5.000,00</li>
+          <li class="list-group-item">Total Pendente: R$ 2.500,00</li>
+          <li class="list-group-item">Quantidade de Títulos: 15</li>
+        </ul>
+        <div class="card-footer">
+          <strong>Total: R$ 50</strong>
+        </div>
+      </div>
     </div>
-    <div class="col-md-6 text-right">
-      <button class="btn btn-primary" onclick="imprimirRelatorio()">Imprimir</button>
-    </div>
+
+    <!-- Adicione mais colunas para outros bancos conforme necessário -->
   </div>
 </div>
-
-<!-- Tabela Banco 1 -->
-<div class="container mt-4">
-  <h3>Banco 1</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Valor</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cliente 1</td>
-        <td>R$ 100,00</td>
-        <td>
-          <button class="btn btn-warning" onclick="editarPagamento('Banco1', 'Cliente 1')">Editar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Tabela Banco 2 -->
-<div class="container mt-4">
-  <h3>Banco 2</h3>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Cliente</th>
-        <th>Valor</th>
-        <th>Ações</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>Cliente 2</td>
-        <td>R$ 150,00</td>
-        <td>
-          <button class="btn btn-warning" onclick="editarPagamento('Banco2', 'Cliente 2')">Editar</button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-<!-- Adicione mais tabelas para outros bancos conforme necessário -->
-
-<!-- Scripts JavaScript -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-<script>
-  function imprimirRelatorio() {
-    // Adicione lógica de impressão aqui
-    alert('Relatório impresso!');
-  }
-
-  function editarPagamento(banco, cliente) {
-    // Adicione lógica de edição aqui, usando informações do banco e do cliente
-    alert('Editando pagamento do banco ' + banco + ' para o cliente ' + cliente);
-  }
-</script>
-
-</body>
-</html>
-
-
+    
 {% endblock %}
