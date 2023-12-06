@@ -86,10 +86,11 @@ async def view(id):
 		model.save_report(relatorio , pendentes)
 
 	
-	data = model.list_report_id(id)
+	data = model.list_report_resume_id(id)
+	fechamento = model.get_closure(id)
 
 
-	return render_template('report/view.html' , data = data  , id=id)
+	return render_template('report/view.html' , data = data  , fechamento = fechamento)
 	
 
 

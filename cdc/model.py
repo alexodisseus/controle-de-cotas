@@ -306,19 +306,26 @@ def list_report(filters:str, offset:str, per_page:str ):
 				
 		data = session.exec(query).all()
 		return data
-def list_report_id(id):
+
+def list_report_resume_id(id):
 	with Session(engine) as session:
 		
 		query= select(
 			Account.bank,
-			func.sum(ReportPayment.value),
+			ReportPayment.value,
 			func.sum(ReportPayment.amount),
-			Closure
+			func.count(ReportPayment.amount),
+
 			).join(User, ReportPayment.user_id == User.id).join(
-			Account, User.id == Account.user_id).join(
-			Closure, Closure.id == ReportPayment.closure_id).group_by(Account.bank)
+			Account, User.id == Account.user_id).group_by(Account.bank)
 
 		data = session.exec(query).all()
+		return data
+
+def get_closure(id):
+	with Session(engine) as session:
+		
+		data = session.get(Closure , id)
 		return data
 	
 

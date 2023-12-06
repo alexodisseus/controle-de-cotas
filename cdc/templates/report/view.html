@@ -8,15 +8,16 @@
 {% endblock %}
 {% block content %}
 {{data}}
+{{fechamento}}
 
 <div class="container mt-3">
   <h2>Relatório Bancário</h2>
     <div class="card mt-3">
       <div class="card-header d-flex justify-content-between align-items-center">
-        mes de tal resumo - arrumar
+        Resumo referente: {{fechamento.date}} - Tipo: {{fechamento.type}}   arrumar
           <div class="btn-group" role="group" aria-label="Ações">
             <button type="button" class="btn btn-secondary">Imprimir</button>
-            <a href="{{url_for('report.edit',id=id)}}">
+            <a href="{{url_for('report.edit',id=fechamento.id)}}">
             <button type="button" class="btn btn-primary">Editar</button>
             </a>
           </div>
@@ -27,10 +28,15 @@
     
 <div class="container mt-4">
   <div class="row">
+    
+  {%if data:%}
+    {%for x in data:%}
+    {% set valor1 = x[1] | int %}
+    {% set valor2 = x[2] | int %}
+
     <div class="col-md-6">
       <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          Bradesco
+        <div class="card-header d-flex justify-content-between align-items-center">{{x[0]}}
           <div class="btn-group" role="group" aria-label="Ações">
             <button type="button" class="btn btn-secondary">Imprimir</button>
             <button type="button" class="btn btn-primary">Editar</button>
@@ -38,40 +44,29 @@
         </div>
         <ul class="list-group list-group-flush">
           <li class="list-group-item">Quantidade de Pagos: 10</li>
-          <li class="list-group-item">Quantidade Pendente: 5</li>
-          <li class="list-group-item">Total Pago: R$ 5.000,00</li>
-          <li class="list-group-item">Total Pendente: R$ 2.500,00</li>
-          <li class="list-group-item">Quantidade de Títulos: 15</li>
+          <li class="list-group-item">Quantidade Pendente: {{x[3]}}</li>
+          <li class="list-group-item">Total Pago: R$ 0</li>
+          <li class="list-group-item">Total Pendente: R$ {{valor1*valor2}}</li>
+          <li class="list-group-item">Quantidade de Títulos: {{x[2]}}</li>
         </ul>
         <div class="card-footer">
           <strong>Total: R$ 50</strong>
         </div>
       </div>
     </div>
-    <div class="col-md-6">
-      <div class="card">
-        <div class="card-header d-flex justify-content-between align-items-center">
-          Bradesco
-          <div class="btn-group" role="group" aria-label="Ações">
-            <button type="button" class="btn btn-secondary">Imprimir</button>
-            <button type="button" class="btn btn-primary">Editar</button>
-          </div>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item">Quantidade de Pagos: 10</li>
-          <li class="list-group-item">Quantidade Pendente: 5</li>
-          <li class="list-group-item">Total Pago: R$ 5.000,00</li>
-          <li class="list-group-item">Total Pendente: R$ 2.500,00</li>
-          <li class="list-group-item">Quantidade de Títulos: 15</li>
-        </ul>
-        <div class="card-footer">
-          <strong>Total: R$ 50</strong>
-        </div>
-      </div>
+    {%endfor%}
+  {%endif%}
+
+    
     </div>
 
     <!-- Adicione mais colunas para outros bancos conforme necessário -->
   </div>
+
+
+
+
+
 </div>
     
 {% endblock %}
