@@ -53,12 +53,22 @@
           <td>{{x[2].bank}}</td>
           <td>{{x[2].agency}}</td>
           <td>{{x[2].number_account }}</td>
-          <td>{{x[1].code}}</td>
+          <td>
+            <a href="{{url_for('shareholder.view', id=x[1].id )}}">
+              
+              {{x[1].code}}
+            </a>
+          </td>
 
           <td>{{x[1].name}}</td>
           <td>{{x[0].amount}}</td>
           <td>R$ {{valor1*valor2}}</td>
-          <td>R$ calcular</td>
+            {%if x[1].tribute:%}
+            <td>R$ {{21-valor1*valor2}}</td>
+            {%else:%}
+            <td>R$ {{valor1*valor2}}</td>
+
+            {%endif%}
           <td>{{x[0].status}}</td>
         </tr>
         {%endfor%}

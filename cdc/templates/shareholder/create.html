@@ -64,10 +64,24 @@
             </div>
             <div class="tab-pane" id="accountTab">
                 <br>
-                <div class="form-group">
-                    <label for="accounts">Conta 1:</label>
-                    <input type="text" class="form-control" id="accounts" name="accounts">
-                </div>
+                <div class="mb-3">
+            <label for="banco" class="form-label">Banco</label>
+            <select class="form-select" id="banco" required>
+                <option value="" selected disabled>Selecione o banco</option>
+                <option value="banco1">Banco 1</option>
+                <option value="banco2">Banco 2</option>
+                <!-- Adicione mais opções conforme necessário -->
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="agencia" class="form-label">Agência</label>
+            <input type="text" class="form-control" id="agencia" required>
+        </div>
+        <div class="mb-3">
+            <label for="conta" class="form-label">Número da Conta</label>
+            <input type="text" class="form-control" id="conta" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cadastrar</button>
                 
             </div>
         </div>

@@ -119,6 +119,21 @@ class Titulo(SQLModel, table=True):
 	cotista2:str
 
 
+class RuleTribute(SQLModel, table=True):
+	"""docstring for titulos, exportar para quotes"""
+	id: Optional[int] = Field(default=None, primary_key=True)
+	status:str
+	isento:str
+	faixa1:str
+	faixa2:str
+	faixa3:str
+	maximo:str
+	date:str
+
+
+
+
+
 
 
 
@@ -342,13 +357,16 @@ def list_report_full(id , bank = None):
 		data = session.exec(query).all()
 		return data
 		
-		return "asd"
+		
 def get_closure(id):
 	with Session(engine) as session:
 		
 		data = session.get(Closure , id)
 		return data
-	
+def tribute_last():
+	with Session(engine) as session:
+		asd = RuleTribute()
+		return asd
 
 def count_report(filters:str, offset:str, per_page:str ):
 	with Session(engine) as session:
