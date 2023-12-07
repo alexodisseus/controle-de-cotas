@@ -322,6 +322,27 @@ def list_report_resume_id(id):
 		data = session.exec(query).all()
 		return data
 
+def list_report_full(id , bank = None):
+	with Session(engine) as session:
+		
+		query= select(
+			ReportPayment,
+			User,
+			Account
+			).join(
+			User, ReportPayment.user_id == User.id
+			).join(
+			Account, User.id == Account.user_id
+			).where(
+			ReportPayment.closure_id == id,
+			Account.bank == bank if bank else ReportPayment.closure_id == id
+			).order_by(
+			Account.bank.desc()
+			)
+		data = session.exec(query).all()
+		return data
+		
+		return "asd"
 def get_closure(id):
 	with Session(engine) as session:
 		

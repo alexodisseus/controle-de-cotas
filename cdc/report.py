@@ -62,9 +62,13 @@ def edit(id):
 	if 'username' not in session:
 		return redirect(url_for('admin.login'))
 	"""
+	
+	bank = request.args.get('bank', None)
 
-	#buscar dados relatorios
-	return render_template('report/edit.html'  )
+	fechamento = model.get_closure(id)
+
+	data = model.list_report_full(id , bank)
+	return render_template('report/edit.html' ,data=data , fechamento = fechamento )
 
 
 
