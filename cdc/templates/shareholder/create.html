@@ -64,24 +64,25 @@
             </div>
             <div class="tab-pane" id="accountTab">
                 <br>
-                <div class="mb-3">
-            <label for="banco" class="form-label">Banco</label>
-            <select class="form-select" id="banco" required>
-                <option value="" selected disabled>Selecione o banco</option>
-                <option value="banco1">Banco 1</option>
-                <option value="banco2">Banco 2</option>
-                <!-- Adicione mais opções conforme necessário -->
-            </select>
-        </div>
-        <div class="mb-3">
-            <label for="agencia" class="form-label">Agência</label>
-            <input type="text" class="form-control" id="agencia" required>
-        </div>
-        <div class="mb-3">
-            <label for="conta" class="form-label">Número da Conta</label>
-            <input type="text" class="form-control" id="conta" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Cadastrar</button>
+                <div class="form-group">
+                    <label for="banco">Banco</label>
+                    <select class="form-control" id="banco" name="banco">
+                      <option value="">Selecione um banco</option>
+                      <option value="001">Banco do Brasil</option>
+                      <option value="104">Caixa Econômica Federal</option>
+                      <option value="237">Bradesco</option>
+                      <option value="341">Itaú</option>
+                      <option value="359">Santander</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="agencia">Agência</label>
+                    <input type="text" class="form-control" id="agencia" name="agencia" placeholder="Agência" required>
+                </div>
+                <div class="form-group">
+                    <label for="conta">Conta</label>
+                    <input type="text" class="form-control" id="conta" name="conta" placeholder="Conta" required>
+                </div>
                 
             </div>
         </div>
@@ -89,3 +90,25 @@
     </form>
 </div>
 {% endblock %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Cadastro de Conta Bancária</title>
+</head>
+<body>
+
+<div class="container mt-5">
+  <h2>Cadastro de Conta Bancária</h2>
+  <form>
+    
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+  </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
