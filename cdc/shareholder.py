@@ -126,12 +126,16 @@ def edit(id):
 		state = request.form.get('state')
 		cep = request.form.get('cep')
 		accounts = request.form.get('accounts')
+		banco = request.form.get('banco')
+		agencia = request.form.get('agencia')
+		conta = request.form.get('conta')
+
 		print(id)
-	
-		model.update_shareholder(nome, email,cpf,birth,telephone, cell, street, number, city, state, cep, id)
+		
+		model.update_shareholder(nome, email,cpf,birth,telephone, cell, street, number, city, state, cep, banco, agencia, conta, id)
 
 
-		return redirect(url_for('shareholder.view' , id = id))
+		#return redirect(url_for('shareholder.view' , id = id))
 
 	data = model.view_user_shareholder(id)
 	

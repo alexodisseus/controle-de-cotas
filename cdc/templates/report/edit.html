@@ -11,6 +11,7 @@
 
 <br>
 {{fechamento}}
+{{data}}
 <div class="container mt-3">
   <h2>Relatório Bancário</h2>
 
@@ -63,8 +64,8 @@
           <td>{{x[1].name}}</td>
           <td>{{x[0].amount}}</td>
           <td>R$ {{valor1*valor2}}</td>
-            {%if x[1].tribute:%}
-            <td>R$ {{21-valor1*valor2}}</td>
+            {%if x.User.income_tax == "S":%}
+            <td>R$ {{(valor1*valor2) - 21}}</td>
             {%else:%}
             <td>R$ {{valor1*valor2}}</td>
 

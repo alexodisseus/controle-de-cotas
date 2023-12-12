@@ -49,6 +49,7 @@ class User(SQLModel, table=True):
 	cell:str
 	status:str
 	code:str
+	income_tax:str
 	adresses:List['Address']=Relationship()
 	accounts:List['Account']=Relationship()
 	quotas:List['Quota']=Relationship()
@@ -172,6 +173,9 @@ def update_shareholder(
 	city:str,
 	state:str,
 	cep:str,
+	banco:str,
+	agencia:str,
+	conta:str,
 	id,
 	
 	):
@@ -202,7 +206,15 @@ def update_shareholder(
 			address.city=city
 		if state:
 			address.state=state
+		
 
+		account = session.get(Account, user.id)
+		if banco:
+			account.bank = banco
+		if agencia:
+			account.agency = agencia
+		if conta:
+			account.number_account = conta
 
 		session.commit()
 		

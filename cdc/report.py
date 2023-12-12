@@ -70,6 +70,7 @@ def edit(id):
 	data = model.list_report_full(id , bank)
 
 	tribute_rules = model.tribute_last()
+	
 	return render_template('report/edit.html' ,data=data , fechamento = fechamento )
 
 
