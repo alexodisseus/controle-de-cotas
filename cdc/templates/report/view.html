@@ -7,8 +7,6 @@
                   href="{{url_for('static', filename='index.css')}}">
 {% endblock %}
 {% block content %}
-{{data}}
-{{fechamento}}
 
 <div class="container mt-3">
   <h2>Relatório Bancário</h2>
@@ -16,7 +14,9 @@
       <div class="card-header d-flex justify-content-between align-items-center">
         Resumo referente: {{fechamento.date}} - Tipo: {{fechamento.type}}   arrumar
           <div class="btn-group" role="group" aria-label="Ações">
+            <!--
             <button type="button" class="btn btn-secondary">Imprimir</button>
+            -->
             <a href="{{url_for('report.edit',id=fechamento.id)}}">
             <button type="button" class="btn btn-primary">Editar</button>
             </a>
@@ -38,7 +38,9 @@
       <div class="card">
         <div class="card-header d-flex justify-content-between align-items-center">{{x[0]}} - {%if x[4]:%} {{x[4]}} {%endif%}
           <div class="btn-group" role="group" aria-label="Ações">
+            <!--
             <button type="button" class="btn btn-secondary">Imprimir</button>
+            -->
             <a href="{{url_for('report.edit',id=fechamento.id, bank=x[0])}}">
               
               <button type="button" class="btn btn-primary">Editar</button>

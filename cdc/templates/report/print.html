@@ -8,19 +8,20 @@
 {% endblock %}
 {% block content %}
 
+
+{{data}}
 <br>
 
 <div class="container mt-3">
-  <h2>Relatório Bancário</h2>
+  <h2>pagamento</h2>
 
   <div class="card mt-3 ">
     <div class="card-header d-flex justify-content-between align-items-center">
       Todos detalhes
       <div class="btn-group" role="group" aria-label="Ações">
-            <button type="button" class="btn btn-secondary"> Devolver</button>
-            
-            <form action="{{url_for('report.print')}}">
-            <button type="submit" class="btn btn-primary">Pagar</button>
+            <button type="button" class="btn btn-secondary"> Gravar</button>
+            <a href="{{url_for('report.edit',id = 1)}}">
+            <button type="button" class="btn btn-primary">imprimir</button>
             </a>
           </div>
     </div>
@@ -50,7 +51,7 @@
         {% set valor1 = x[0].value | int %}
         {% set valor2 = x[0].amount | int %}
         <tr>
-          <td><input name="{{x.ReportPayment.id}}" type="checkbox"></td>
+          <td><input type="checkbox"></td>
           
           <td>{{x.ReportPayment.date}}</td>
           <td>{{x[2].bank}}</td>
@@ -79,7 +80,6 @@
         <!-- Adicione mais linhas conforme necessário -->
       </tbody>
     </table>
-  </form>
   </div>
 
     <div class="card-footer">

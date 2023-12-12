@@ -99,10 +99,26 @@ def edit(id):
 	else:
 		data = model.list_report_full(id , bank)
 
-	
-	
-	
 	return render_template('report/edit.html' ,data=data , fechamento = fechamento , tribute = tribute_rules, dtribute=dtribute)
+
+
+
+
+@report.route('/print/', methods = ['GET','POST'])
+def print():
+	"""
+	if 'username' not in session:
+		return redirect(url_for('admin.login'))
+	"""
+	
+	data = request.args.get('')
+
+		
+	return render_template('report/print.html' ,data=data )
+
+	
+	
+	
 
 
 
