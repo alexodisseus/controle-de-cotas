@@ -375,9 +375,10 @@ def get_closure(id):
 		
 		data = session.get(Closure , id)
 		return data
+		
 def tribute_last():
 	with Session(engine) as session:
-		asd = RuleTribute()
+		asd = session.get(RuleTribute, 1)
 		return asd
 
 def count_report(filters:str, offset:str, per_page:str ):

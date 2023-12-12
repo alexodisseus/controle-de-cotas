@@ -54,7 +54,32 @@ def index():
 	
 	#return render_template('login.html' )
 
+def tribute_rules(data, tribute):
+    alicota = 0
+    
+    if data < float(tribute.isento):
+        data =  "{:.2f}".format(round(data,2))
+        return data
+    
+    if data < float(tribute.faixa1):
+    	data = data - (data*7.5/100) +  142.80
+    	data =  "{:.2f}".format(round(data,2))
+    	return data
 
+    if data < float(tribute.faixa2):
+    	data = data - (data*15/100) + 354.80
+    	data =  "{:.2f}".format(round(data,2))
+    	return data
+
+    if data < float(tribute.faixa3):
+    	data = data - (data*22.5/100) + 636.13
+    	data =  "{:.2f}".format(round(data,2))
+    	return data
+
+    data = data - (data*27.5/100) + 869.36
+    data =  "{:.2f}".format(round(data,2))
+    return data
+    
 
 @report.route('/edit/<id>', methods = ['GET','POST'])
 def edit(id):
@@ -66,12 +91,14 @@ def edit(id):
 	bank = request.args.get('bank', None)
 
 	fechamento = model.get_closure(id)
+	dtribute=model.tribute_last()
 
 	data = model.list_report_full(id , bank)
 
-	tribute_rules = model.tribute_last()
 	
-	return render_template('report/edit.html' ,data=data , fechamento = fechamento )
+	
+	
+	return render_template('report/edit.html' ,data=data , fechamento = fechamento , tribute = tribute_rules, dtribute=dtribute)
 
 
 
