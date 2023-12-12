@@ -72,6 +72,7 @@ class Account(SQLModel, table=True):
 	bank:str
 	agency:str
 	number_account:str
+	name_bank:str
 	user_id: int = Field(foreign_key='user.id')
 
 
@@ -342,6 +343,7 @@ def list_report_resume_id(id):
 			ReportPayment.value,
 			func.sum(ReportPayment.amount),
 			func.count(ReportPayment.amount),
+			Account.name_bank,
 
 			).join(User, ReportPayment.user_id == User.id).join(
 			Account, User.id == Account.user_id).group_by(Account.bank)
@@ -349,7 +351,7 @@ def list_report_resume_id(id):
 		data = session.exec(query).all()
 		return data
 
-def list_report_full(id , bank = None):
+def list_report_comum(id , bank = None ):
 	with Session(engine) as session:
 		
 		query= select(
@@ -362,9 +364,33 @@ def list_report_full(id , bank = None):
 			Account, User.id == Account.user_id
 			).where(
 			ReportPayment.closure_id == id,
-			Account.bank == bank if bank else ReportPayment.closure_id == id
+			Account.bank == bank if bank else ReportPayment.closure_id == id,
+			ReportPayment.amount > 5,
+
 			).order_by(
 			Account.bank.desc()
+			)
+		data = session.exec(query).all()
+		return data
+
+def list_report_full(id , bank = None ):
+	with Session(engine) as session:
+		
+		query= select(
+			ReportPayment,
+			User,
+			Account
+			).join(
+			User, ReportPayment.user_id == User.id
+			).join(
+			Account, User.id == Account.user_id
+			).where(
+			Account.bank == bank if bank else ReportPayment.closure_id,
+			ReportPayment.status == 'pendente'
+			).order_by(
+			Account.bank.desc()
+			).order_by(
+			User.name
 			)
 		data = session.exec(query).all()
 		return data

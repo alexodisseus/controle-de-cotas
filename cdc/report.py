@@ -91,9 +91,13 @@ def edit(id):
 	bank = request.args.get('bank', None)
 
 	fechamento = model.get_closure(id)
+	
 	dtribute=model.tribute_last()
+	if fechamento.type == 'comum':
 
-	data = model.list_report_full(id , bank)
+		data = model.list_report_comum(id , bank)
+	else:
+		data = model.list_report_full(id , bank)
 
 	
 	
