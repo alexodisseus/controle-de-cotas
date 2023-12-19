@@ -37,6 +37,8 @@ def index():
 	count = model.count_report(filters, offset, per_page )
 
 	count = math.ceil(count/ per_page)
+	
+
 	pagination =[
 	filters,
 	page,

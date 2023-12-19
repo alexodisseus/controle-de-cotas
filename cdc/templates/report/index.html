@@ -7,7 +7,7 @@
                   href="{{url_for('static', filename='index.css')}}">
 {% endblock %}
 {% block content %}
-{{pending}}
+
 <div class="container mt-5">
     <h2>Relatório de pagamento</h2>
      <h5>Últimos meses</h5>
@@ -41,17 +41,6 @@
                 <td> - </td>
                 <td>{{x.status}}</td>
                 <td> - </td>
-              </tr>
-                {%endfor%}    
-            {%endif%}
-            {% if data[0]:%}
-                {%for x in data[0]:%}
-                <tr>
-                <td>{{x.code}}</td>
-                <td>{{x.date}}</td>
-                <td>{{x.grouping}}</td>
-                <td>{{x.status}}</td>
-                <td>{{x.old}}</td>
               </tr>
                 {%endfor%}    
             {%endif%}

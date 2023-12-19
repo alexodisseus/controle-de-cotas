@@ -73,26 +73,7 @@
               </tr>
             </thead>
             <tbody>
-            {% if data[0]:%}
-                {%for x in data[0]:%}
-                <tr>
-                <td>{{x.code}}</td>
-                <td>{{x.date}}</td>
-                <td>{{x.grouping}}</td>
-                <td>{{x.status}}</td>
-                <td>{{x.old}}</td>
-              </tr>
-                {%endfor%}
-                {%else:%}
-                <tr>
-                <td></td>
-                <td></td>
-                <td>nao existem dados</td>
-                <td></td>
-                <td></td>
-              </tr>
                 
-                {%endif%}
               
             </tbody>
           </table>
