@@ -54,6 +54,7 @@ def index():
 
 """
 
+
 @payment.route('/', methods = ['GET','POST'])
 def index():
 	# carregar todos os filtros
@@ -62,9 +63,23 @@ def index():
 	# separar os pagamentos selecionados para concluir
 
 	dtribute=model.tribute_last()
+	
 	data = model.list_payment_filters()
+	
 	return render_template('payment/index.html',data=data ,  dtribute=dtribute , tribute = tribute_rules)
 
+
+@payment.route('/ajax', methods = ['GET'])
+def ajax():
+	# carregar todos os filtros
+	# listar todos os pendentes
+	# filtrar conforme necessario
+	# separar os pagamentos selecionados para concluir
+
+	
+	data = model.list_payment_filters()
+	
+	print(data)
 
 
 
@@ -117,21 +132,18 @@ def edit(id):
 
 
 
-
+"""
 @payment.route('/print/', methods = ['GET','POST'])
 def print():
-	"""
 	if 'username' not in session:
 		return redirect(url_for('admin.login'))
-	"""
 	
 	data = request.args.get('')
 
 		
 	return render_template('report/print.html' ,data=data )
 
-	
-	
+"""	
 	
 
 
@@ -166,3 +178,40 @@ async def view(id):
 def configure(app):
 	app.register_blueprint(payment)
 
+
+
+
+
+"""
+colocar isso para parar erros no terminal
+from flask import Flask, render_template, jsonify
+
+app = Flask(__name__)
+
+# Seu código para obter dados vai aqui
+# Substitua isso com o método que você está usando para obter seus dados
+def get_payment_data(page):
+    # Implemente a lógica para obter dados da página especificada
+    # ...
+
+# Rota para carregar dados com AJAX
+@app.route('/payment/ajax', methods=['GET'])
+def load_payment_data():
+    # Obtenha o número da página da solicitação GET
+    page = int(request.args.get('page', 1))
+
+    # Obtenha os dados da página atual
+    payment_data = get_payment_data(page)
+
+    # Verifique se há dados antes de retornar a resposta
+    if payment_data:
+        # Retorne os dados como JSON
+        return jsonify(payment_data)
+    else:
+        # Caso não haja dados, retorne uma resposta vazia ou um código de erro
+        return jsonify({'error': 'No data found'}), 404  # ou 204 para resposta vazia
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
+"""

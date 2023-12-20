@@ -482,6 +482,8 @@ def list_payment_filters():
 			)
 		data =session.exec(query).all()
 		"""
+		offset = 600
+		per_page = 10
 		query= select(
 			ReportPayment,
 			User,
@@ -496,7 +498,8 @@ def list_payment_filters():
 			Account.bank.desc()
 			).order_by(
 			User.name
-			)
+			).offset(offset).limit(per_page)
+
 		data = session.exec(query).all()
 
 
