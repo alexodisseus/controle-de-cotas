@@ -3,6 +3,7 @@ import shareholder
 import quote
 import report
 import closure
+import payment
 
 import model
 
@@ -23,6 +24,7 @@ shareholder.configure(app)
 quote.configure(app)
 report.configure(app)
 closure.configure(app)
+payment.configure(app)
 db.configure(app)
 
 Bootstrap4(app)

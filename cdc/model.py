@@ -474,7 +474,35 @@ def create_report_pay_check(id):
 		else:
 			return True
 
-		
+def list_payment_filters():
+	with Session(engine) as session:
+		"""
+		query = select(
+			ReportPayment
+			)
+		data =session.exec(query).all()
+		"""
+		query= select(
+			ReportPayment,
+			User,
+			Account
+			).join(
+			User, ReportPayment.user_id == User.id
+			).join(
+			Account, User.id == Account.user_id
+			).where(
+			ReportPayment.status == 'pendente'
+			).order_by(
+			Account.bank.desc()
+			).order_by(
+			User.name
+			)
+		data = session.exec(query).all()
+
+
+		return data
+
+
 def create_report_pay_auto(id):
 	with Session(engine) as session:
 		#buscar todos os titulos e gravar no pagamento como pendente
