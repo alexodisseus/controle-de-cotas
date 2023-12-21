@@ -29,7 +29,7 @@
 
       <div class="table-responsive">
     
-        <table class="table">
+        <table id="tabela" class="table">
       <thead>
         <tr>
           <th scope="col">Ação</th>
@@ -98,29 +98,41 @@
 let currentPage = 1;
 
 // Função para carregar dados com AJAX
-function loadData() {
+
+
+function loadData(){
+    alert(1000)
+    var xmlhttp=new XMLHttpRequest();
+      document.getElementById('tabela').innerHTML = this.responseText;
+ 
+    xmlhttp.open("GET","/pagamentos/ajax/", true);
+    xmlhttp.send();
+ 
+}
+function () {
     // Faça uma requisição AJAX para obter os dados da página atual
     $.ajax({
-        url: `ajax?offset=${currentPage}`,
+        url: ``,
         method: 'GET',
         dataType: 'json',
         success: function (data) {
-            // Adicione os dados à tabela
+
+            alert('1')
             appendDataToTable(data);
             currentPage++;
         },
         error: function (error) {
-            console.error('Erro ao carregar dados:', error);
+            console.error('Erro ao :', error);
         }
     });
 }
 
 // Função para adicionar dados à tabela
 function appendDataToTable(data) {
-    const tbody = $('#tabela tbody');
+    const tbody = $('#tabela');
 
     data.forEach(item => {
-        const row = $('<tr>');
+        const row = $('<tr><td>asdasdasdasd</td></tr>');
         // Adicione os dados à linha da tabela conforme a estrutura da sua resposta JSON
         // Exemplo: row.append(`<td>${item.acao}</td>`);
 

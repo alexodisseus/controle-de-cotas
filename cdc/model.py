@@ -474,7 +474,7 @@ def create_report_pay_check(id):
 		else:
 			return True
 
-def list_payment_filters():
+def list_payment_filters(page):
 	with Session(engine) as session:
 		"""
 		query = select(
@@ -482,7 +482,7 @@ def list_payment_filters():
 			)
 		data =session.exec(query).all()
 		"""
-		offset = 600
+		offset = page
 		per_page = 10
 		query= select(
 			ReportPayment,

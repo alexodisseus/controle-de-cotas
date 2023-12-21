@@ -5,6 +5,7 @@ import math
 from flask import Blueprint, render_template, current_app , request , session, redirect, url_for
 
 
+
 payment = Blueprint('payment' , __name__ , url_prefix='/pagamentos')
 
 
@@ -64,23 +65,29 @@ def index():
 
 	dtribute=model.tribute_last()
 	
-	data = model.list_payment_filters()
+	data = model.list_payment_filters(1)
 	
 	return render_template('payment/index.html',data=data ,  dtribute=dtribute , tribute = tribute_rules)
 
 
-@payment.route('/ajax', methods = ['GET'])
+@payment.route('/ajax/', methods = ['GET'])
 def ajax():
 	# carregar todos os filtros
 	# listar todos os pendentes
 	# filtrar conforme necessario
 	# separar os pagamentos selecionados para concluir
 
-	
-	data = model.list_payment_filters()
-	
-	print(data)
 
+	page = int(request.args.get('page', 1))
+
+    # Obtenha os dados da página atual
+	payment_data = model.list_payment_filters(page) 
+	
+	if payment_data:
+		return render_template('payment/ajax.html',data=payment_data)
+	else:
+		return "asd"
+	
 
 
 def tribute_rules(data, tribute):
@@ -177,41 +184,3 @@ async def view(id):
 
 def configure(app):
 	app.register_blueprint(payment)
-
-
-
-
-
-"""
-colocar isso para parar erros no terminal
-from flask import Flask, render_template, jsonify
-
-app = Flask(__name__)
-
-# Seu código para obter dados vai aqui
-# Substitua isso com o método que você está usando para obter seus dados
-def get_payment_data(page):
-    # Implemente a lógica para obter dados da página especificada
-    # ...
-
-# Rota para carregar dados com AJAX
-@app.route('/payment/ajax', methods=['GET'])
-def load_payment_data():
-    # Obtenha o número da página da solicitação GET
-    page = int(request.args.get('page', 1))
-
-    # Obtenha os dados da página atual
-    payment_data = get_payment_data(page)
-
-    # Verifique se há dados antes de retornar a resposta
-    if payment_data:
-        # Retorne os dados como JSON
-        return jsonify(payment_data)
-    else:
-        # Caso não haja dados, retorne uma resposta vazia ou um código de erro
-        return jsonify({'error': 'No data found'}), 404  # ou 204 para resposta vazia
-
-if __name__ == '__main__':
-    app.run(debug=True)
-
-"""
