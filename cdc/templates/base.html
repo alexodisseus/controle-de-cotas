@@ -14,7 +14,7 @@
         <title>Sistema para Cotas</title>
         {% endblock %}
     </head>
-<body>
+<body class="">
 
 
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -78,10 +78,83 @@
 
 </div>
 
+<div class="d-flex justify-content-center mt-3 bg-light align-items-center">
+  
+ <blockquote class="blockquote mb-4 mt-4">
+      <p>Sistema de controle de cotas - Shopping Center Lapa</p>
+      <footer class="blockquote-footer">Desenvolvimento <cite title="Source Title">Continuo</cite></footer>
+    </blockquote>
+
+</div>
+
       {% block scripts %}
             <!-- Optional JavaScript -->
             {{ bootstrap.load_js() }}
         {% endblock %}
+
+<script type="text/javascript"></script>
+<script>
+  
+
+
+
+// Defina uma variável para rastrear a página atual
+let currentPage = 1;
+
+// Função para carregar dados com AJAX
+
+ var x = 0;
+function loadData(){
+    
+    var xmlhttp=new XMLHttpRequest();
+    xmlhttp.onreadystatechange=function(){
+        
+        appendDataToTable(this.responseText)
+      //document.getElementById('tabelabody').innerHTML = this.responseText;
+      
+        }
+     
+    xmlhttp.open("GET","/pagamentos/ajax?page="+x, true);
+    x=x+10;
+    xmlhttp.send();
+    
+}
+function la() {
+    $.ajax({
+            url: "ajax",
+            type: "GET",
+            success: function(resp){
+                $('tbody#tabela').append(resp.data);
+                alert('45')
+            }
+        });
+    
+    
+}
+
+// Função para adicionar dados à tabela
+function appendDataToTable(data) {
+    const tbody = $('#tabelabody');
+
+    
+        const row = $(data);
+        
+
+        tbody.append(row);
+    
+}
+
+// Função para carregar mais dados quando o usuário rolar a página
+$("#carregar").click(function () {
+    
+        loadData();
+    
+});
+
+// Carregue os dados iniciais
+  //loadData();
+</script>
+
 </body>
 </html>
 

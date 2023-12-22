@@ -15,7 +15,7 @@
 
 
 <div class="container mt-3">
-  <h2>Relatório Bancário</h2>
+  <h2>Seleção para pagamento</h2>
 
   <div class="card mt-3 ">
     <div class="card-header d-flex justify-content-between align-items-center">
@@ -46,7 +46,7 @@
           <th scope="col">Status</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody id="tabelabody">
         {%if data:%}
         {%for x in data:%}
         {% set valor1 = x.ReportPayment.value | int %}
@@ -82,6 +82,7 @@
       </tbody>
     </table>
   </div>
+    <button class="btn btn-primary" id="carregar">Carregar mais</button>
 
   </div>
 
@@ -90,113 +91,5 @@
 
 </div>
 
-{{ bootstrap.load_js() }}
-<script type="text/javascript"></script>
-<script>
-  
-// Defina uma variável para rastrear a página atual
-let currentPage = 1;
-
-// Função para carregar dados com AJAX
-
-
-function loadData(){
-    alert(1000)
-    var xmlhttp=new XMLHttpRequest();
-      document.getElementById('tabela').innerHTML = this.responseText;
- 
-    xmlhttp.open("GET","/pagamentos/ajax/", true);
-    xmlhttp.send();
- 
-}
-function () {
-    // Faça uma requisição AJAX para obter os dados da página atual
-    $.ajax({
-        url: ``,
-        method: 'GET',
-        dataType: 'json',
-        success: function (data) {
-
-            alert('1')
-            appendDataToTable(data);
-            currentPage++;
-        },
-        error: function (error) {
-            console.error('Erro ao :', error);
-        }
-    });
-}
-
-// Função para adicionar dados à tabela
-function appendDataToTable(data) {
-    const tbody = $('#tabela');
-
-    data.forEach(item => {
-        const row = $('<tr><td>asdasdasdasd</td></tr>');
-        // Adicione os dados à linha da tabela conforme a estrutura da sua resposta JSON
-        // Exemplo: row.append(`<td>${item.acao}</td>`);
-
-        tbody.append(row);
-    });
-}
-
-// Função para carregar mais dados quando o usuário rolar a página
-$(window).scroll(function () {
-    if ($(window).scrollTop() + $(window).height() == $(document).height()) {
-        loadData();
-    }
-});
-
-// Carregue os dados iniciais
-loadData();
-  alert(10)
-
-</script>
 
 {% endblock %}
-
-
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tabela com Filtro e Carregamento Dinâmico</title>
-    <!-- Adicione os links para o Bootstrap e jQuery aqui -->
-    <link rel="stylesheet" href="path/to/bootstrap.min.css">
-    <script src="path/to/jquery.min.js"></script>
-</head>
-<body>
-    <div class="container mt-3">
-        <table id="tabela" class="table">
-            <!-- Cabeçalho da tabela -->
-            <thead>
-                <tr>
-                    <th>Ação</th>
-                    <th>Data</th>
-                    <th>Banco</th>
-                    <th>Agência</th>
-                    <th>Conta</th>
-                    <th>Código</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Valor bruto</th>
-                    <th>Valor líquido</th>
-                    <th>Status</th>
-                </tr>
-            </thead>
-            <!-- Corpo da tabela -->
-            <tbody>
-                <!-- Os dados serão carregados dinamicamente aqui -->
-            </tbody>
-        </table>
-    </div>
-
-    <script src="seu-script.js"></script>
-</body>
-</html>
-
-
-
-

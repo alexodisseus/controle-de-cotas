@@ -76,17 +76,17 @@ def ajax():
 	# listar todos os pendentes
 	# filtrar conforme necessario
 	# separar os pagamentos selecionados para concluir
-
-
+	
+	
+	dtribute=model.tribute_last()
 	page = int(request.args.get('page', 1))
 
     # Obtenha os dados da página atual
-	payment_data = model.list_payment_filters(page) 
+	data = model.list_payment_filters(page) 
 	
-	if payment_data:
-		return render_template('payment/ajax.html',data=payment_data)
-	else:
-		return "asd"
+	
+	
+	return render_template('payment/ajax.html',data=data,dtribute=dtribute , tribute = tribute_rules)
 	
 
 
