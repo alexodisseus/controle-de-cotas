@@ -95,52 +95,53 @@
 <script type="text/javascript"></script>
 <script>
   
-
-
-
-// Defina uma variável para rastrear a página atual
 let currentPage = 1;
 
-// Função para carregar dados com AJAX
+var x = 0;
+function loadData(){    
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function(){
+      appendDataToTable(this.responseText)
 
- var x = 0;
-function loadData(){
-    
-    var xmlhttp=new XMLHttpRequest();
-    xmlhttp.onreadystatechange=function(){
-        
-        appendDataToTable(this.responseText)
-      //document.getElementById('tabelabody').innerHTML = this.responseText;
-      
-        }
-     
-    xmlhttp.open("GET","/pagamentos/ajax?page="+x, true);
-    x=x+10;
-    xmlhttp.send();
+    //document.getElementById('tabelabody').innerHTML = this.responseText;
+      }
+   
+  xmlhttp.open("GET","/pagamentos/ajax?page="+x, true);
+  x=x+10;
+  xmlhttp.send();
     
 }
-function la() {
-    $.ajax({
-            url: "ajax",
-            type: "GET",
-            success: function(resp){
-                $('tbody#tabela').append(resp.data);
-                alert('45')
-            }
-        });
+
+function filtraData(){    
+  var xmlhttp=new XMLHttpRequest();
+  xmlhttp.onreadystatechange=function(){
+      var codigo = document.getElementById('codigo').value
+      alert(codigo)
+      recallDataToTable(this.responseText)
+
+    //document.getElementById('tabelabody'). = this.responseText;
+      }
+   
+  xmlhttp.open("GET","/pagamentos/ajax?page="+x+"&codigo="+codigo.value, true);
+  x=x+10;
+  xmlhttp.send();
     
+}
+
+// Função para adicionar dados à tabela
+function  recallDataToTable(data) {
+    const tbody = $('#tabelabody');
+      const row = $(data);
+      tbody = row;
+
     
 }
 
 // Função para adicionar dados à tabela
 function appendDataToTable(data) {
     const tbody = $('#tabelabody');
-
-    
-        const row = $(data);
-        
-
-        tbody.append(row);
+      const row = $(data);
+      tbody.append(row);
     
 }
 
@@ -151,8 +152,14 @@ $("#carregar").click(function () {
     
 });
 
-// Carregue os dados iniciais
-  //loadData();
+$("#filtrar").click(function () {
+        
+        filtraData()
+
+      
+    
+});
+
 </script>
 
 </body>

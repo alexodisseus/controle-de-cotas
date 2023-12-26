@@ -80,9 +80,10 @@ def ajax():
 	
 	dtribute=model.tribute_last()
 	page = int(request.args.get('page', 1))
-
+	codigo = request.args.get('codigo')
+	print(codigo)
     # Obtenha os dados da página atual
-	data = model.list_payment_filters(page) 
+	data = model.list_payment_filters(page ) 
 	
 	
 	
